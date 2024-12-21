@@ -1,0 +1,41 @@
+<%- layout("layouts/boilerplate.ejs") %>
+
+<body>
+    <% if (listings.length > 0) { %>
+        <h3 class="list-of-hotels">List of Hotels Available</h3>
+    <%} else {%>
+        <h3 class="list-of-hotels">No Hotels Available.</h3>
+    <%} %>
+    
+    <br>
+    <div class="data">
+        <!-- row row-cols-lg-3  -->
+        <div class="card-container">
+            <% for(listing of listings){ %>
+                <a href="/listings/<%= listing.id %>" class="showanchor">
+
+                    <div class="card cols" style="width: 25rem;">
+                        <img src="<%= listing.image.url %>" class="card-img-top" alt="listing_image" style="height: 20rem;">
+                        <div class="card-body">
+                          <p class="card-text">
+                            <h6 class="title-card">
+
+                                <b><%= listing.title %></b><br>
+                            </h6>
+                            <p class="subtext-card">
+
+                                <%= listing.location %>, 
+                                <%= listing.country %>
+                            </p>
+                            <p class="price-card"><b>&#8377; <%= listing.price.toLocaleString("en-IN") %> </b>/night</p>
+                        </p>
+                        </div>
+                    </div>
+                </a>
+                <% } %>
+    
+        </div>
+    </div>
+</body>
+</html>
+
